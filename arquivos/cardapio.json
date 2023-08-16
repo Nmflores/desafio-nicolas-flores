@@ -1,0 +1,54 @@
+{
+    "cardapio":[ {
+
+        "codigo":"café",
+        "valor":"3,00",
+        "principal":"t"
+
+    },
+    {
+        "codigo":"chantily",
+        "valor":"1,50",
+        "principal":"f"
+    },
+    {
+        "codigo":"suco",
+        "valor":"6,20",
+        "principal":"t"
+    },
+
+    {
+        "codigo":"sanduiche",
+        "valor":"6,50",
+        "principal":"t"
+    },  
+    {
+        "codigo":"queijo",
+        "valor":"2,00",
+        "principal":"f"
+    },
+
+    {
+        "codigo":"salgado",
+        "valor":"7,25",
+        "principal":"t"
+    },
+    {
+        "codigo":"combo1",
+        "valor":"9,50",
+        "principal":"f"
+    },
+    {
+        "codigo":"combo2",
+        "valor":"9,50",
+        "principal":"f"
+    }
+
+
+
+]
+}
+
+
+
+
