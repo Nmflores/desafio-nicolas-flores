@@ -1,0 +1,16 @@
+{
+    "tipos":[
+        {
+            "nome":"dinheiro",
+            "modificacao":"5"
+        },
+        {
+            "nome":"debito",
+            "modificacao":"0"
+        },
+        {
+            "nome":"credito",
+            "modificacao":"3"
+        }
+    ]
+}
