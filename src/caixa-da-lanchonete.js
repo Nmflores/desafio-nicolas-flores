@@ -1,5 +1,6 @@
-import m_json from '../arquivos/cardapio.json' assert{type:'json'};
-import metodoPagamento from '../arquivos/tipoPagamentos.json' assert{type:'json'};
+import fs from 'fs';
+const m_json = JSON.parse(fs.readFileSync('./arquivos/cardapio.json'));
+const metodoPagamento = JSON.parse(fs.readFileSync('./arquivos/tipoPagamentos.json'));
 
 class CaixaDaLanchonete {
 
@@ -22,20 +23,17 @@ class CaixaDaLanchonete {
      //O loop está sendo usado para separar os valores de itens,colocando os codigos dos produtos em transf[0] e a quantidade em transf[1]
         for(let i = 0;i<itens.length;i++){
             transf = itens[i].split(',');
-            if(!transf){
-                console.log("erro");
-                return "Item invalido!";
+             //Verifica se o codigo existe no arquivo json
+             if(verificaCodigo(transf[0])){
+                console.log("Item inválido!");
+                return "Item inválido!";
             }
             //Se quantidade for vazia retorna quantidade invalida
             if(transf[1].includes('0')){
-                console.log("Quantidade invalida!");
-                return "Quantidade invalida!";
+                console.log("Quantidade inválida!");
+                return "Quantidade inválida!";
             }
-            //Verifica se o codigo existe no arquivo json
-            if(verificaCodigo(transf[0])){
-                console.log("Item invalido!");
-                return "Item invalido!";
-            }
+           
            //Se codigo for cafe o chantily pode ser adicionado e se for sanduiche o queijo pode ser adicionado
             if(transf[0] == "cafe" ){
                 temCafe = true;
@@ -125,34 +123,5 @@ function verificaMetodo(metodo){
     return true;
 } 
     
-         
-//Meu npm test não conseguiu iniciar, mesmo depois de eu seguir as instruções e seguir o link do babel, por isso eu vou adicionar cada teste      
-    
-//Teste de carrinho vazio
-new CaixaDaLanchonete().calcularValorDaCompra('credito',[]);
-new CaixaDaLanchonete().calcularValorDaCompra('debito',[]);
-new CaixaDaLanchonete().calcularValorDaCompra('dinhheiro',[]);
-//Teste com 1 café
-new CaixaDaLanchonete().calcularValorDaCompra('credito',['cafe,1']);
-new CaixaDaLanchonete().calcularValorDaCompra('debito',['cafe,1']);
-new CaixaDaLanchonete().calcularValorDaCompra('dinheiro',['cafe,1']);
-//Teste com 1 café,1 sanduiche e 1 queijo
-new CaixaDaLanchonete().calcularValorDaCompra('credito',['cafe,1','sanduiche,1','queijo,1']);
-new CaixaDaLanchonete().calcularValorDaCompra('debito',['cafe,1','sanduiche,1','queijo,1']);
-new CaixaDaLanchonete().calcularValorDaCompra('dinheiro',['cafe,1','sanduiche,1','queijo,1']);
-//Teste 4 cafés,3 sanduiches e 2 queijos
-new CaixaDaLanchonete().calcularValorDaCompra('credito',['cafe,4','sanduiche,3','queijo,2']);
-new CaixaDaLanchonete().calcularValorDaCompra('debito',['cafe,4','sanduiche,3','queijo,2']);
-new CaixaDaLanchonete().calcularValorDaCompra('dinheiro',['cafe,4','sanduiche,3','queijo,2']);
-//Teste de erros
-new CaixaDaLanchonete().calcularValorDaCompra('dinheiro',['cafe,0']);
-//new CaixaDaLanchonete().calcularValorDaCompra('dinheiro',['1']);
-new CaixaDaLanchonete().calcularValorDaCompra('dinheiro',['pizza,1']);
-new CaixaDaLanchonete().calcularValorDaCompra('especie',['cafe,1']);
-//Teste de acompanhamentos
-new CaixaDaLanchonete().calcularValorDaCompra('dinheiro',['chantily,1']);
-new CaixaDaLanchonete().calcularValorDaCompra('credito',['queijo,1']);
-new CaixaDaLanchonete().calcularValorDaCompra('credito',['chantily,1','sanduiche,1']);
-new CaixaDaLanchonete().calcularValorDaCompra('credito',['cafe,1','queijo,1']);
-
+new CaixaDaLanchonete().calcularValorDaCompra('debito','sanduiche,1','suco,2');
 export { CaixaDaLanchonete }
